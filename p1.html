@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Builder</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: #2C3E50;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #3498DB;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .sidebar button:hover {
+            background: #2980B9;
+        }
+        .main {
+            flex: 1;
+            padding: 20px;
+            background: #ECF0F1;
+        }
+        .widget {
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            border-radius: 8px;
+            transition: transform 0.3s;
+            border: 4px solid #3498DB;
+        }
+        .widget:hover {
+            transform: scale(1.03);
+            border-color: #E74C3C;
+        }
+        .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .remove-btn:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Dashboard Builder</h2>
+        <button onclick="addChartWidget()">Add Chart</button>
+        <button onclick="addTableWidget()">Add Table</button>
+        <button onclick="addWidget('📝 Text Box')">Add Text Box</button>
+        <button onclick="clearDashboard()">Clear Dashboard</button>
+    </div>
+    <div class="main" id="dashboard">
+        <h1 style="text-align:center; color:#2C3E50;">My Dashboard</h1>
+    </div>
+
+    <script>
+        function addChartWidget() {
+            const dashboard = document.getElementById('dashboard');
+            const widget = document.createElement('div');
+            widget.classList.add('widget');
+            widget.innerHTML = '<h3>📊 Chart</h3><canvas id="chartCanvas"></canvas>';
+            
+            const removeBtn = document.createElement('button');
+            removeBtn.innerText = 'Remove';
+            removeBtn.classList.add('remove-btn');
+            removeBtn.onclick = () => widget.remove();
+            
+            widget.appendChild(removeBtn);
+            dashboard.appendChild(widget);
+            
+            setTimeout(() => {
+                const ctx = document.getElementById('chartCanvas').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                        datasets: [{
+                            label: 'Votes',
+                            data: [12, 19, 3, 5, 2, 3],
+                            backgroundColor: ['red', 'blue', 'yellow', 'green', 'purple', 'orange']
+                        }]
+                    }
+                });
+            }, 100);
+        }
+        
+        function addTableWidget() {
+            const dashboard = document.getElementById('dashboard');
+            const widget = document.createElement('div');
+            widget.classList.add('widget');
+            widget.innerHTML = `
+                <h3>📋 Table</h3>
+                <table border="1" width="100%">
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Country</th>
+                    </tr>
+                    <tr>
+                        <td>Alice</td>
+                        <td>25</td>
+                        <td>USA</td>
+                    </tr>
+                    <tr>
+                        <td>Bob</td>
+                        <td>30</td>
+                        <td>UK</td>
+                    </tr>
+                    <tr>
+                        <td>Charlie</td>
+                        <td>28</td>
+                        <td>Canada</td>
+                    </tr>
+                </table>
+            `;
+            
+            const removeBtn = document.createElement('button');
+            removeBtn.innerText = 'Remove';
+            removeBtn.classList.add('remove-btn');
+            removeBtn.onclick = () => widget.remove();
+            
+            widget.appendChild(removeBtn);
+            dashboard.appendChild(widget);
+        }
+        
+        function addWidget(type) {
+            const dashboard = document.getElementById('dashboard');
+            const widget = document.createElement('div');
+            widget.classList.add('widget');
+            widget.innerHTML = `<h3>${type}</h3><p>Content for ${type}</p>`;
+            
+            const removeBtn = document.createElement('button');
+            removeBtn.innerText = 'Remove';
+            removeBtn.classList.add('remove-btn');
+            removeBtn.onclick = () => widget.remove();
+            
+            widget.appendChild(removeBtn);
+            dashboard.appendChild(widget);
+        }
+        
+        function clearDashboard() {
+            document.getElementById('dashboard').innerHTML = '<h1 style="text-align:center; color:#2C3E50;">My Dashboard</h1>';
+        }
+    </script>
+</body>
+</html>
