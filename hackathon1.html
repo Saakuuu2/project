@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - URL Shortener</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-image :url("projectimage.jpg");
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 800px;
+            padding: 50px;
+            background: white;
+            color: black;
+            border-radius: 15px;
+            border: 3px solid black;
+            box-shadow: 10px 10px 25px rgba(255, 246, 246, 0.997);
+            opacity: 1;
+            transform: translateY(-50px);
+            transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.3s ease;
+        }
+        .container:hover {
+            box-shadow: 14px 15px 30px rgba(242, 239, 239, 0.4);
+        }
+        h1 {
+            font-size: 36px;
+        }
+        p {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #2ebf91;
+            border: 3px solid black;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #28a67c;
+        }
+        /* .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: 3px solid black;
+            background: #ff4b5c;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .back-btn:hover {
+            background: #d43f50;
+        } */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the URL Shortener</h1>
+        <p>Shorten your URLs quickly and easily with our tool.</p>
+        <a href="./hackathon2.html" class="btn">Get Started</a>
+        <br>
+        <!-- <a href="./hackathon1.html" class="back-btn">Back to Home</a> -->
+        
+
+    </div>
+    
+    <script>
+        gsap.to(".container", { opacity: 1, y: 0, duration: 1, ease: "power2.out" });
+    </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(to right, #8360c3, #2ebf91);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background: white;
+            color: black;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.3s ease;
+        }
+        .container:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        input, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+        input {
+            border: 2px solid #ccc;
+            transition: box-shadow 0.3s;
+        }
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 8px #2ebf91;
+        }
+        button {
+            background: #2ebf91;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #28a67c;
+        }
+        #shortUrl {
+            display: none;
+            margin-top: 15px;
+            color: #2ebf91;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff4b5c;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .back-btn:hover {
+            background: #d43f50;
+        }
+        .home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #2ebf91;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .home-btn:hover {
+            background: #28a67c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🚀 URL Shortener</h2>
+        <input type="text" id="longUrl" placeholder="Enter long URL" required>
+        <button onclick="shortenUrl()">Shorten</button>
+        <p id="shortUrl" onclick="copyToClipboard()"></p>
+        <a href="index.html" class="back-btn">Back to Home</a>
+    </div>
+    
+    <script>
+        gsap.to(".container", { opacity: 1, y: 0, duration: 1, ease: "power2.out" });
+
+        function shortenUrl() {
+            let longUrl = document.getElementById('longUrl').value;
+            if (!longUrl) return alert("Please enter a URL");
+            
+            let shortCode = Math.random().toString(36).substring(2, 8);
+            let shortUrl = window.location.origin + '/' + shortCode;
+            
+            let shortUrlElement = document.getElementById('shortUrl');
+            shortUrlElement.innerText = shortUrl;
+            shortUrlElement.style.display = 'block';
+            
+            gsap.fromTo("#shortUrl", { opacity: 0, y: -20, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "elastic.out(1, 0.5)" });
+        }
+
+        function copyToClipboard() {
+            navigator.clipboard.writeText(document.getElementById('shortUrl').innerText);
+            alert("Copied to clipboard!");
+            gsap.to("#shortUrl", { scale: 1.2, duration: 0.2, yoyo: true, repeat: 1 });
+        }
+    </script>
+</body>
+</html> -->
